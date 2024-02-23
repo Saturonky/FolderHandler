@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.exercise.pattern.visitor.FileVisitor;
 
 import java.io.File;
+import java.io.IOException;
 
 @Slf4j
 public class FolderHandler implements FileHandlerChain {
@@ -14,22 +15,29 @@ public class FolderHandler implements FileHandlerChain {
     }
 
     @Override
-    public void handle(File file, FileVisitor visitor) {
+    public void handle(File file, FileVisitor visitor) throws IOException {
         if (file.isDirectory()) {
-            visitor.visitFolder(file);
-            File[] files = file.listFiles();
+            handleDirectory(file, visitor);
+        } else {
+            next.handle(file, visitor); // Passa il controllo dei file al gestore successivo
+        }
+    }
+
+    private void handleDirectory(File directory, FileVisitor visitor) {
+        try {
+            visitor.visitFolder(directory);
+            File[] files = directory.listFiles();
             if (files != null) {
-                for (File f : files) {
-                    // Gestione delle sottocartelle
-                    if (f.isDirectory()) {
-                        handle(f, visitor); // Gestione ricorsiva delle sottocartelle
+                for (File file : files) {
+                    if (file.isDirectory()) {
+                        handle(file, visitor);
                     } else {
-                        next.handle(f, visitor); // Passa il controllo dei file al gestore successivo
+                        next.handle(file, visitor);
                     }
                 }
             }
-        } else {
-            next.handle(file, visitor); // Passa il controllo dei file al gestore successivo
+        } catch (IOException e) {
+            log.error("Errore durante la visita della cartella " + directory.getPath(), e);
         }
     }
 }

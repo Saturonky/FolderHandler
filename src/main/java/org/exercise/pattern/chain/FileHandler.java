@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.exercise.pattern.visitor.FileVisitor;
 
 import java.io.File;
+import java.io.IOException;
 
 @Slf4j
 public class FileHandler implements FileHandlerChain {
@@ -16,9 +17,13 @@ public class FileHandler implements FileHandlerChain {
     @Override
     public void handle(File file, FileVisitor visitor) {
         if (file.isFile()) {
-            visitor.visitFile(file);
+            visitor.visitFile(file); // Delega la gestione dei file a visitor
         } else {
-            next.handle(file, visitor);
+            try {
+                next.handle(file, visitor);
+            } catch (IOException e) {
+                log.error(e.getMessage());
+            }
         }
     }
 }

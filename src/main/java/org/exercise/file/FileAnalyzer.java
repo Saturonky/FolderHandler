@@ -5,6 +5,7 @@ import org.exercise.pattern.chain.FileHandlerChain;
 import org.exercise.pattern.visitor.FileVisitor;
 
 import java.io.File;
+import java.io.IOException;
 
 // Analyzer che combina Chain e Step
 @Slf4j
@@ -15,7 +16,7 @@ public class FileAnalyzer {
         this.handlerChain = handlerChain;
     }
 
-    public void analyze(File file, FileVisitor visitor) {
+    public void analyze(File file, FileVisitor visitor) throws IOException {
         handlerChain.handle(file, visitor);
     }
 }
