@@ -10,8 +10,6 @@ import java.util.Map;
 @Slf4j
 public class FileCounterVisitor implements FileVisitor {
     private final Map<File, Map<String, Integer>> folderFileCounts = new HashMap<>();
-    private final Map<File, Integer> folderTotalFileCount = new HashMap<>();
-
     @Override
     public void visitFile(File file) {
         String extension = getFileExtension(file);
