@@ -1,28 +1,21 @@
 package org.exercise;
 
 import lombok.extern.slf4j.Slf4j;
-import org.exercise.file.FileAnalyzer;
-import org.exercise.pattern.chain.FileHandler;
-import org.exercise.pattern.chain.FolderHandler;
-import org.exercise.file.FileCounterVisitor;
+import org.exercise.file.FileExplorer;
+import org.exercise.file.FileHandlerChain;
+import org.exercise.file.FileLoggingVisitor;
 
 import java.io.File;
 import java.io.IOException;
 @Slf4j
 public class Main {
     public static void main(String[] args) {
-        String folderPath = "";
-        // Creazione della catena di responsabilità
-        FileHandler fileHandler = new FileHandler(null); // Nessun successore, poiché è l'ultimo nella catena
-        FolderHandler folderHandler = new FolderHandler(fileHandler); // Ultimo gestore nella catena, delega il controllo ai file a FileHandler
-        // Creazione dell' analizzatore di file e il viisitor
-        FileAnalyzer fileAnalyzer = new FileAnalyzer(folderHandler); // Inizia l'analisi con il gestore della cartella principale
-        FileCounterVisitor visitor = new FileCounterVisitor();
-        try {
-            fileAnalyzer.analyze(new File(folderPath), visitor);
-        } catch (IOException e) {
-            log.error(e.getMessage());
-        }
-        visitor.printResult();
+        final File rootFolder = new File("C:\\Users\\terzi\\Desktop\\Cartelle\\Games\\Athena's Armor Set Search for MHW v0.61b\\Data\\Languages\\Italiano");
+
+        final FileLoggingVisitor visitor = new FileLoggingVisitor();
+        final FileHandlerChain chain = new FileHandlerChain(visitor);
+
+        final FileExplorer explorer = new FileExplorer(chain);
+        explorer.explore(rootFolder);
     }
 }
