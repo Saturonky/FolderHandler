@@ -10,12 +10,13 @@ import java.io.IOException;
 @Slf4j
 public class Main {
     public static void main(String[] args) {
-        final File rootFolder = new File("C:\\Users\\terzi\\Desktop\\Cartelle\\Games\\Athena's Armor Set Search for MHW v0.61b\\Data\\Languages\\Italiano");
+        final File rootFolder = new File("C:\\Users\\terzi\\Desktop\\Cartelle");
 
         final FileLoggingVisitor visitor = new FileLoggingVisitor();
         final FileHandlerChain chain = new FileHandlerChain(visitor);
 
         final FileExplorer explorer = new FileExplorer(chain);
         explorer.explore(rootFolder);
+        visitor.printTotalCounts();
     }
 }
