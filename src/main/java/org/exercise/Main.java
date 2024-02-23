@@ -9,7 +9,7 @@ import java.io.File;
 
 public class Main {
     public static void main(String[] args) {
-        String folderPath = "C:\\Users\\terzi\\Desktop\\mine.mod\\MHRiseTalismanEditor";
+        String folderPath = "";
         FileHandler fileHandler = new FileHandler(null); // Nessun successore, poiché è l'ultimo nella catena
         FolderHandler folderHandler = new FolderHandler(fileHandler); // Ultimo gestore nella catena, delega il controllo ai file a FileHandler
         FileAnalyzer fileAnalyzer = new FileAnalyzer(folderHandler); // Inizia l'analisi con il gestore della cartella principale

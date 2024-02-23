@@ -22,7 +22,7 @@ public class FolderHandler implements FileHandlerChain {
                 for (File f : files) {
                     // Gestione delle sottocartelle
                     if (f.isDirectory()) {
-                        handle(f, visitor); // Ricorsione per gestire le sottocartelle
+                        handle(f, visitor); // Gestione ricorsiva delle sottocartelle
                     } else {
                         next.handle(f, visitor); // Passa il controllo dei file al gestore successivo
                     }
