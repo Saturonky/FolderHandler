@@ -30,7 +30,7 @@ public class FileCounterVisitor implements FileVisitor {
     public void printResult() {
         log.info("*****************************FILE**************************************");
         folderFileCounts.forEach((folder, counts) -> {
-            log.info("Conteggio dei file per cartella: {}", folder.getName());
+            log.info("Conteggio dei file per cartella {} : {}", folder.getName(), folder.getParent());
             counts.forEach((extension, count) -> log.info("   File con formato {}: {}", extension, count));
             int totalFiles = counts.values().stream().mapToInt(Integer::intValue).sum();
             log.info("   Totale file: {}\n", totalFiles);

@@ -11,7 +11,7 @@ import java.io.IOException;
 @Slf4j
 public class Main {
     public static void main(String[] args) {
-        String folderPath = "C:\\Users\\terzi\\Desktop\\Cartelle\\emulator\\publish\\bin";
+        String folderPath = "C:\\Users\\terzi\\Desktop\\Cartelle\\Games";
         // Creazione della catena di responsabilità
         FileHandler fileHandler = new FileHandler(null); // Nessun successore, poiché è l'ultimo nella catena
         FolderHandler folderHandler = new FolderHandler(fileHandler); // Ultimo gestore nella catena, delega il controllo ai file a FileHandler

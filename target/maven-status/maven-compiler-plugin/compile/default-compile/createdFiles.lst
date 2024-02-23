@@ -1,5 +1,5 @@
+org\exercise\file\FileCounterVisitor.class
 org\exercise\Main.class
-org\exercise\pattern\visitor\FileCounterVisitor.class
 org\exercise\pattern\chain\FileHandlerChain.class
 org\exercise\pattern\chain\FileHandler.class
 org\exercise\pattern\visitor\FileVisitor.class
