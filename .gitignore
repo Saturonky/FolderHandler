@@ -1,0 +1,30 @@
+# File compilati
+*.class
+
+# Cartelle di build
+target/
+build/
+out/
+
+# File di configurazione specifici dell'IDE
+*.iml
+.idea/
+.classpath
+.project
+.settings/
+.vscode/
+
+# File di pacchetto
+*.jar
+*.war
+*.ear
+
+# Altri file e cartelle ignorati comunemente
+*.log
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.loadpath
+.DS_Store
